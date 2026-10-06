@@ -1,0 +1,37 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: gatewayserver
+  cloud:
+    config:
+      enabled: false
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: marque
+              uri: lb://MARQUE
+              predicates:
+                - Path=/api/marques/**
+            - id: voiture
+              uri: lb://VOITURE
+              predicates:
+                - Path=/api/voitures/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    gateway:
+      access: unrestricted
