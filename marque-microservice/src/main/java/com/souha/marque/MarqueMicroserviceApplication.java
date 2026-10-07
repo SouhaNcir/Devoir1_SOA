@@ -33,6 +33,7 @@ public class MarqueMicroserviceApplication {
                     Marque.builder()
                             .nomMar("BMW")
                             .paysOrigine("Allemagne")
+                            .voitserie("V002")
                             .build()
             );
 
